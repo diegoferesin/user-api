@@ -1,10 +1,9 @@
 package com.example.userapi.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -24,7 +23,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-@Getter
 public class User {
 
     @Id

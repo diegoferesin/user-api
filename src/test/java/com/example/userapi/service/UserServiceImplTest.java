@@ -71,6 +71,7 @@ class UserServiceImplTest {
                 .created(LocalDateTime.now())
                 .modified(LocalDateTime.now())
                 .lastLogin(LocalDateTime.now())
+                .token(validToken)
                 .isActive(true)
                 .build();
     }
