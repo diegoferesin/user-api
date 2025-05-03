@@ -18,7 +18,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copy the built artifact from the builder stage
-COPY --from=builder /app/target/user-api-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder /app/target/users-api-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the application port
 EXPOSE 8080

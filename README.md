@@ -31,18 +31,18 @@ mvn clean package
 ```
 3. Run the application
 ```bash
-java -jar target/user-api-0.0.1-SNAPSHOT.jar
+java -jar target/users-api-0.0.1-SNAPSHOT.jar
 ```
 
 ### Using Docker
 
 1. Build the Docker image
 ```bash
-docker build -t user-api .
+docker build -t users-api .
 ```
 2. Run the container
 ```bash
-docker run -p 8080:8080 user-api
+docker run -p 8080:8080 users-api
 ```
 
 ## API Documentation
@@ -76,14 +76,14 @@ The API documentation is available at:
 **Response:**
 ```json
 {
-  "id": "4a459a56-2580-4fe9-a641-bc83d4b2f8a5",
-  "name": "Juan Rodriguez",
-  "email": "juan@rodriguez.org",
-  "created": "2023-09-23T13:45:32.145",
-  "modified": "2023-09-23T13:45:32.145",
-  "lastLogin": "2023-09-23T13:45:32.145",
-  "token": "eyJhbGciOiJIUzI1NiJ9...",
-  "isactive": true
+  "id": "4102e577-30d6-4c97-b393-446efa378cbe",
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "created": "2025-05-03T03:03:14.643834",
+  "modified": "2025-05-03T03:03:14.643846",
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjI0MTM5NCwiZXhwIjoxNzQ2MzI3Nzk0fQ.Igz1i1y0uGngmpQukjYVEKgxH045cL7FjvR4hD5W8lppOts0xJ4BFw6Cv-m3wGxdh9bm3i8GcYt3tb-I8ZMqOg",
+  "last_login": "2025-05-03T03:03:14.588429",
+  "is_active": true
 }
 ```
 
