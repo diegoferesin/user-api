@@ -162,9 +162,24 @@ docker run -p 8080:8080 users-api
 
 ## API Documentation
 
-The API documentation is available at:
-- Swagger UI: http://localhost:8080/swagger-ui.html
-- OpenAPI JSON: http://localhost:8080/api-docs
+The API documentation is available in multiple formats:
+
+1. **Swagger UI**: Interactive documentation available at http://localhost:8080/swagger-ui.html
+2. **OpenAPI JSON**: Raw OpenAPI specification at http://localhost:8080/api-docs
+3. **OpenAPI YAML**: The OpenAPI specification is also available in YAML format [here](docs/api/openapi.yaml)
+
+The OpenAPI specification includes:
+- Detailed request/response schemas
+- Example values
+- Error responses
+- Authentication requirements
+- API endpoints documentation
+
+You can use the Swagger UI to:
+- Test API endpoints directly from the browser
+- View request/response schemas
+- See example values
+- Understand authentication requirements
 
 ## API Endpoints
 
@@ -217,6 +232,33 @@ Connection details:
 - JDBC URL: `jdbc:h2:mem:userdb`
 - Username: `sa`
 - Password: `password`
+
+### Database Schema
+
+The database schema is automatically created on application startup using the SQL script located at `src/main/resources/sql/schema.sql`. This script:
+
+1. Creates the `users` table with the following structure:
+   - `id`: UUID (Primary Key)
+   - `name`: VARCHAR(255)
+   - `email`: VARCHAR(255) (Unique)
+   - `password`: VARCHAR(255)
+   - `created`: TIMESTAMP
+   - `modified`: TIMESTAMP
+   - `last_login`: TIMESTAMP
+   - `token`: VARCHAR(255)
+   - `is_active`: BOOLEAN
+
+2. Creates the `user_phones` table for storing phone numbers:
+   - `user_id`: UUID (Foreign Key)
+   - `phone_number`: VARCHAR(255)
+   - `city_code`: VARCHAR(255)
+   - `country_code`: VARCHAR(255)
+
+3. Creates indexes for performance optimization:
+   - Index on `email` for faster user lookups
+   - Index on `token` for faster token validation
+
+The schema is automatically applied when the application starts, and the database is recreated each time the application restarts.
 
 ## Testing
 

@@ -1,0 +1,157 @@
+openapi: 3.0.1
+info:
+  title: User Registration API
+  description: RESTful API for user registration using Spring Boot, JPA, and JWT authentication
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    UserRegistrationRequest:
+      type: object
+      required:
+        - name
+        - email
+        - password
+        - phones
+      properties:
+        name:
+          type: string
+          description: User's full name
+          example: John Doe
+        email:
+          type: string
+          format: email
+          description: User's email address
+          example: john.doe@example.com
+        password:
+          type: string
+          format: password
+          description: User's password (must meet complexity requirements)
+          example: MyP@ssw0rd
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/Phone'
+          description: List of user's phone numbers
+
+    Phone:
+      type: object
+      required:
+        - number
+        - city_code
+        - country_code
+      properties:
+        number:
+          type: string
+          description: Phone number
+          example: "123456789"
+        city_code:
+          type: string
+          description: City code
+          example: "1"
+        country_code:
+          type: string
+          description: Country code
+          example: "57"
+
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: User's unique identifier
+          example: "4102e577-30d6-4c97-b393-446efa378cbe"
+        name:
+          type: string
+          description: User's full name
+          example: John Doe
+        email:
+          type: string
+          format: email
+          description: User's email address
+          example: john.doe@example.com
+        created:
+          type: string
+          format: date-time
+          description: User creation timestamp
+          example: "2025-05-03T03:03:14.643834"
+        modified:
+          type: string
+          format: date-time
+          description: Last modification timestamp
+          example: "2025-05-03T03:03:14.643846"
+        last_login:
+          type: string
+          format: date-time
+          description: Last login timestamp
+          example: "2025-05-03T03:03:14.588429"
+        token:
+          type: string
+          description: JWT token for authentication
+          example: "eyJhbGciOiJIUzUxMiJ9..."
+        is_active:
+          type: boolean
+          description: User account status
+          example: true
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: "Email already exists"
+
+paths:
+  /users/register:
+    post:
+      tags:
+        - Users
+      summary: Register a new user
+      description: Creates a new user account with the provided information
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistrationRequest'
+      responses:
+        '201':
+          description: User successfully registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse' 
