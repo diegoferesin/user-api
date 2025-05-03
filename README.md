@@ -89,8 +89,7 @@ The API documentation is available at:
 
 ## Postman Collection
 
-A Postman collection is available for testing the API endpoints. You can find it in the following location:
-- Postman Collection: `postman-collection/Users API.postman_collection.json`
+A Postman collection is available for testing the API endpoints. You can find it [here](postman-collection/Users%20API.postman_collection.json)
 
 This collection includes all the necessary endpoints and example requests to test the API functionality.
 
